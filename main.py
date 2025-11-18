@@ -1,7 +1,4 @@
-from room import Room
-from guest import Guest
-from staff import Staff
-from hotel import Hotel
+from src import Guest, Room, Staff, Hotel
 
 def main():
     hotel = Hotel("Buffer Suites", "12345 Memory Bus, Motherboard PC, Brand Serial#")
