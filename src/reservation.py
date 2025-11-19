@@ -59,3 +59,9 @@ class Reservation:
         self.room.set_status(RoomStatus.AVAILABLE)
 
         print(f"Reservation cancelled at {self.cancellation_time} by {self.guest.name}")
+
+    def __str__(self):
+        return f"{self.guest.name}, Room {self.room.room_number}, Status: {self.status.value}"
+
+    def __repr__(self):
+        return self.__str__()

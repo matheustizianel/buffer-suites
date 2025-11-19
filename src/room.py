@@ -21,3 +21,9 @@ class Room:
 
     def show_details(self):
         print(f"Room {self.room_number} | Type: {self.room_type} | Status: {self.status.value.title()}")
+
+    def __str__(self):
+        return f"{self.room_number} | {self.room_type} | {self.status.value.title()}"
+
+    def __repr__(self):
+        return self.__str__()
