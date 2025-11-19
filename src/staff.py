@@ -1,9 +1,10 @@
 from src.person import Person
 
 class Staff(Person):
-    def __init__(self, name, role, address):
-        super().__init__(name, address)
+    def __init__(self, name, role, email, phone_number = None, address = None):
+        super().__init__(name, email, phone_number, address)
         self.role = role.lower()
 
     def __str__(self):
-        return f"{self.name} - {self.role.title()} ({self.adress})"
+        parent_str = super().__str__()
+        return f"{parent_str} | Role: {self.role.title()}"

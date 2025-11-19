@@ -5,25 +5,16 @@ def main():
 
     print(f"Welcome to 🏨 {hotel.name} 🏨 - Here downtime becomes uptime")
 
-    guest = Guest("Matheus Tizianel", "11305 Nano Ln Jacksonville FL 32256 US")
-    cleaner = Staff("James Bond", "Cleaner", "45 Palm St, Miami FL 12345 US")
-    receptionist = Staff("John", "Receptionist", "101 Ocean Dr, Miami FL 67891 US")
+    guest = Guest("Matheus Tizianel", "matheus9.mts@gmail.com")
+    cleaner = Staff("James Bond", "Cleaner", "cleaner@staff.com", "9999999999", "45 Palm St, Miami FL 12345 US")
+    receptionist = Staff("John", "Receptionist", "receptionist@staff.com")
 
     room = Room(101, "Queen - Ocean View")
-
-    print()
-    room.show_details()
-    print()
-
-    guest.book_room(room)
-    print()
-
-    room.show_details()
-    print()
-
-    guest.cancel_booking(room)
-    print()
-
+    hotel.add_room(room)
+    hotel.add_guest(guest)
+    reservation = hotel.create_reservation(guest, room)
+    reservation.check_in()
+    reservation.check_out()
 
     # while True:
     #     print("\n====Menu====")
