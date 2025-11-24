@@ -92,3 +92,17 @@ class Hotel:
 
     def find_reservations_by_guest(self, guest):
         return [res for res in self.reservations if res.guest == guest]
+
+    def assign_cleaning_task(self, room, cleaner):
+        if room not in self.rooms:
+            raise Exception("Room does not belong to this hotel.")
+
+        cleaner.add_cleaning_task(room)
+
+    def clean_room(self, room, cleaner):
+        if room not in self.rooms:
+            raise Exception("Room does not belong to this hotel.")
+
+        cleaner.clean_room(room)
+        room.mark_cleaned(cleaner)
+

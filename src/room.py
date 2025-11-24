@@ -1,4 +1,5 @@
 from enum import Enum
+from src.cleaner import Cleaner
 
 class RoomStatus(Enum):
     AVAILABLE = "available"
@@ -18,6 +19,19 @@ class Room:
 
     def set_status(self, new_status):
         self.status = new_status
+
+    def mark_cleaned(self, staff_member):
+        if not isinstance(staff_member, Cleaner):
+            raise Exception(f"Staff member {staff_member.name} is not allowed to clean rooms.")
+
+        if self.status != RoomStatus.CLEANING:
+            raise Exception(f"Room {self.room_number} must be in cleaning state before being marked as cleaned.")
+
+        self.set_status(RoomStatus.AVAILABLE)
+
+        print(f"Room {self.room_number} is now AVAILABLE after after being cleaned by {staff_member.name}.")
+
+
 
     def show_details(self):
         print(f"Room {self.room_number} | Type: {self.room_type} | Status: {self.status.value.title()}")
