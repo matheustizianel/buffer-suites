@@ -1,5 +1,5 @@
 from enum import Enum
-from src.person import Person
+from src.domain.person import Person
 
 class StaffShift(Enum):
     DAY = "day"

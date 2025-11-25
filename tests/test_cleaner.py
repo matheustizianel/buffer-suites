@@ -1,8 +1,8 @@
-from src.hotel import Hotel
-from src.room import Room, RoomStatus
-from src.guest import Guest
-from src.cleaner import Cleaner
-from src.staff import StaffShift
+from src.domain.hotel import Hotel
+from src.domain.room import Room, RoomStatus
+from src.domain.guest import Guest
+from src.domain.cleaner import Cleaner
+from src.domain.staff import StaffShift
 
 # ----------------------------------------------------------
 # Test 1 — Cleaner receives a task

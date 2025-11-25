@@ -1,6 +1,6 @@
-from src.hotel import Hotel
-from src.room import Room, RoomStatus
-from src.guest import Guest
+from src.domain.hotel import Hotel
+from src.domain.room import Room, RoomStatus
+from src.domain.guest import Guest
 
 def test_create_reservation():
     hotel = Hotel("Test Hotel", "Address")

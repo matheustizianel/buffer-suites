@@ -1,4 +1,4 @@
-from src.staff import Staff, StaffShift
+from src.domain.staff import Staff, StaffShift
 
 class Cleaner(Staff):
     def __init__(self, name, email, phone_number = None, address = None):

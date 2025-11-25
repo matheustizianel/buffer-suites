@@ -1,5 +1,5 @@
-from src.reservation import Reservation
-from src.room import RoomStatus
+from src.domain.reservation import Reservation
+from src.domain.room import RoomStatus
 
 class Hotel:
     def __init__(self, name, address):

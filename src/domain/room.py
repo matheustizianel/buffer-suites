@@ -1,5 +1,5 @@
 from enum import Enum
-from src.cleaner import Cleaner
+from src.domain.cleaner import Cleaner
 
 class RoomStatus(Enum):
     AVAILABLE = "available"

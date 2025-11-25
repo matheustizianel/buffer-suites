@@ -1,5 +1,5 @@
 from datetime import datetime
-from src.person import Person
+from src.domain.person import Person
 
 class Guest(Person):
     def __init__(self, name, email, phone_number = None, address = None, ):

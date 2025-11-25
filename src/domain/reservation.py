@@ -1,6 +1,6 @@
 from datetime import datetime
 from enum import Enum
-from src.room import RoomStatus
+from src.domain.room import RoomStatus
 
 class ReservationStatus(Enum):
     ACTIVE = "active"
