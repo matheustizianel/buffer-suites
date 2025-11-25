@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Enum
 from sqlalchemy.orm import relationship
 
-from src.domain.reservation import ReservationStatus
-from src.db.base import Base
+from ...domain.reservation import ReservationStatus
+from ..base import Base
 
 class ReservationModel(Base):
     __tablename__ = "reservations"

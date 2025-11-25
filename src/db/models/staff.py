@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-from src.db.base import Base
+from ..base import Base
 
 class StaffModel(Base):
     __tablename__ = "staff"

@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, Boolean, Enum, ForeignKey
 from sqlalchemy.orm import relationship
 
-from src.domain.staff import StaffShift
-from src.db.base import Base
+from ...domain.staff import StaffShift
+from ..base import Base
 
 class CleanerModel(Base):
     __tablename__ = "cleaners"
