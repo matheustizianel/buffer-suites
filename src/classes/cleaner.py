@@ -1,4 +1,5 @@
-from src.domain.staff import Staff, StaffShift
+from src.classes.staff import Staff
+from .enums.staff_shift import StaffShift
 
 class Cleaner(Staff):
     def __init__(self, name, email, phone_number = None, address = None):
@@ -23,11 +24,5 @@ class Cleaner(Staff):
         self.cleaning_history.append(room)
 
         print(f"{self.name} cleaned room {room.room_number}.")
-
-    def set_shift(self, new_shift: StaffShift):
-        if not isinstance(new_shift, StaffShift):
-            raise Exception(f"Shift {new_shift} is not a CleanerShift.")
-
-        self.shift = new_shift
 
 

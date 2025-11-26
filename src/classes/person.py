@@ -6,4 +6,4 @@ class Person:
         self.address = address
 
     def __str__(self):
-        return f"Name: {self.name} | Email: {self.email} | Phone Number: {self.phone_number} | Address: {self.address}"
+        return f"Name: {self.name} | Email: {self.email}"

@@ -1,12 +1,7 @@
 from datetime import datetime
-from enum import Enum
-from src.domain.room import RoomStatus
 
-class ReservationStatus(Enum):
-    ACTIVE = "active"
-    CHECKED_IN = "checked_in"
-    COMPLETED = "completed"
-    CANCELLED = "cancelled"
+from .enums.reservation_status import ReservationStatus
+from .enums.room_status import RoomStatus
 
 class Reservation:
     def __init__(self, guest, room):

@@ -1,5 +1,5 @@
-from src.domain import Guest, Room, Staff, Hotel
-from src.domain.room import RoomStatus
+from src.classes import Guest, Room, Staff, Hotel
+from src.classes.room import RoomStatus
 
 def main():
     hotel = Hotel("Buffer Suites", "12345 Memory Bus, Motherboard PC, Brand Serial#")

@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, Enum
 from sqlalchemy.orm import relationship
 
-from ...domain.room import RoomStatus
-from ..base import Base
+from ..classes.enums.room_status import RoomStatus
+from ..db.base import Base
 
 class RoomModel(Base):
     __tablename__ = "rooms"
