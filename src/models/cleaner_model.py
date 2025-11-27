@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, Boolean, Enum, ForeignKey
 from sqlalchemy.orm import relationship
 
-from ..classes.enums.staff_shift import StaffShift
+from ..enums.staff_shift import StaffShift
 from ..db.base import Base
 
 class CleanerModel(Base):

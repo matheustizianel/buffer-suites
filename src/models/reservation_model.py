@@ -1,7 +1,7 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Enum
+from sqlalchemy import Column, Integer, DateTime, ForeignKey, Enum
 from sqlalchemy.orm import relationship
 
-from ..classes.enums.reservation_status import ReservationStatus
+from ..enums.reservation_status import ReservationStatus
 from ..db.base import Base
 
 class ReservationModel(Base):
