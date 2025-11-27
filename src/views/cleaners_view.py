@@ -1,0 +1,10 @@
+import customtkinter as ctk
+
+
+class CleanersView(ctk.CTkFrame):
+
+    def __init__(self, master):
+        super().__init__(master)
+
+        title = ctk.CTkLabel(self, text="Cleaners Management", font=("Arial", 22, "bold"))
+        title.pack(pady=20)
