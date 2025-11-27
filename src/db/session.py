@@ -4,8 +4,9 @@ from .engine import engine
 SessionLocal = sessionmaker(
     autocommit = False,
     autoflush = False,
+    future = True,
+    expire_on_commit = False,
     bind = engine,
-    future = True
 )
 
 def get_db():
