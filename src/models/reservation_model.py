@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, DateTime, ForeignKey, Enum
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, joinedload
 
 from ..enums.reservation_status import ReservationStatus
 from ..db.base import Base
@@ -18,8 +18,8 @@ class ReservationModel(Base):
     
     status = Column(Enum(ReservationStatus), nullable = False)
 
-    guest = relationship("GuestModel", back_populates = "reservations")
-    room = relationship("RoomModel", back_populates = "reservations")
+    guest = relationship("GuestModel", back_populates = "reservations", lazy="joined")
+    room = relationship("RoomModel", back_populates = "reservations", lazy="joined")
 
     def __repr__(self):
         return f"<Reservation (id={self.id}, guest={self.guest_id}, room={self.room_id}, status={self.status})>"

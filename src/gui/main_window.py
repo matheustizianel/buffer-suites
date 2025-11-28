@@ -7,7 +7,7 @@ class MainWIndow:
         ctk.set_default_color_theme("blue")
 
         self.root = ctk.CTk()
-        self.root.title("Buffer Suites - Hotel Management System")
+        self.root.title("Buffer Suites")
         self.root.geometry("1100x700")
 
         self.sidebar = Sidebar(self.root, self.switch_view)
@@ -40,14 +40,6 @@ class MainWIndow:
             case "reservations":
                 from ..views.reservations_view import ReservationsView
                 self.active_view = ReservationsView(self.view_container)
-            
-            case "staff":
-                from ..views.staff_view import StaffView
-                self.active_view = StaffView(self.view_container)
-            
-            case "cleaners":
-                from ..views.cleaners_view import CleanersView
-                self.active_view = CleanersView(self.view_container)
 
         self.active_view.pack(expand=True, fill="both")
 

@@ -7,7 +7,7 @@ class Sidebar(ctk.CTkFrame):
 
         title = ctk.CTkLabel(
             self, 
-            text="Buffer Suites", 
+            text="Buffer Suites",
             font=("Arial", 22, "bold")
         )
         title.pack(pady=20)
@@ -16,8 +16,6 @@ class Sidebar(ctk.CTkFrame):
         self.add_button("Guests", "guests")
         self.add_button("Rooms", "rooms")
         self.add_button("Reservations", "reservations")
-        self.add_button("Staff", "staff")
-        self.add_button("Cleaners", "cleaners")
 
         appearance_label = ctk.CTkLabel(self, text="Appearance Mode:")
         appearance_label.pack(pady=(40, 5))

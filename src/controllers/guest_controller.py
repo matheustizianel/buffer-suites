@@ -20,7 +20,7 @@ class GuestController:
         finally:
             session.close()
 
-    def get_guest_by_id(self, guest_id: int):
+    def get_guest_by_id(self, guest_id):
         session = SessionLocal()
         try:
             guest = session.get(GuestModel, guest_id)
@@ -36,7 +36,33 @@ class GuestController:
         finally:
             session.close()
 
-    def delete_guest(self, guest_id: int) -> bool:
+    def update_guest(self, guest_id, name=None, email=None, phone_number=None, address=None):
+        session = SessionLocal()
+        try:
+            guest = session.get(GuestModel, guest_id)
+            if not guest:
+                return None
+
+            if name is not None:
+                guest.name = name
+
+            if email is not None:
+                guest.email = email
+
+            if phone_number is not None:
+                guest.phone_number = phone_number
+                
+            if address is not None:
+                guest.address = address
+
+            session.commit()
+            session.refresh(guest)
+            return guest
+        finally:
+            session.close()
+
+
+    def delete_guest(self, guest_id):
         session = SessionLocal()
         try:
             guest = session.get(GuestModel, guest_id)

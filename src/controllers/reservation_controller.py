@@ -1,23 +1,38 @@
 from datetime import datetime
+
 from src.db.session import SessionLocal
 from src.models.reservation_model import ReservationModel
-
+from src.models.room_model import RoomModel
+from src.enums.room_status import RoomStatus
+from src.enums.reservation_status import ReservationStatus
 
 class ReservationController:
-
-    def create_reservation(self, guest_id, room_id, status, booking_time=None):
+    def create_reservation(self, guest_id, room_id):
         session = SessionLocal()
         try:
+            room = session.get(RoomModel, room_id)
+
+            if not room:
+                raise ValueError("Room not found.")
+
+            if room.status != RoomStatus.AVAILABLE:
+                raise ValueError(f"Room {room.room_number} is not available.")
+
             reservation = ReservationModel(
                 guest_id=guest_id,
                 room_id=room_id,
-                booking_time=booking_time or datetime.now(),
-                status=status
+                booking_time=datetime.now(),
+                status=ReservationStatus.ACTIVE
             )
+
+            room.status = RoomStatus.BOOKED
+
             session.add(reservation)
             session.commit()
             session.refresh(reservation)
+
             return reservation
+
         finally:
             session.close()
 
@@ -35,32 +50,74 @@ class ReservationController:
         finally:
             session.close()
 
-    def update_reservation(self, reservation_id, **kwargs):
+    def check_in(self, reservation_id):
         session = SessionLocal()
         try:
             reservation = session.get(ReservationModel, reservation_id)
-            if not reservation:
-                return None
 
-            for key, value in kwargs.items():
-                if hasattr(reservation, key):
-                    setattr(reservation, key, value)
+            if not reservation:
+                raise ValueError("Reservation not found.")
+
+            if reservation.status != ReservationStatus.ACTIVE:
+                raise ValueError("Reservation must be ACTIVE to check in.")
+
+            reservation.status = ReservationStatus.CHECKED_IN
+            reservation.checkin_time = datetime.now()
+
+            room = session.get(RoomModel, reservation.room_id)
+            room.status = RoomStatus.OCCUPIED
 
             session.commit()
             session.refresh(reservation)
             return reservation
+
         finally:
             session.close()
 
-    def delete_reservation(self, reservation_id):
+    def check_out(self, reservation_id):
         session = SessionLocal()
         try:
             reservation = session.get(ReservationModel, reservation_id)
-            if not reservation:
-                return False
 
-            session.delete(reservation)
+            if not reservation:
+                raise ValueError("Reservation not found.")
+
+            if reservation.status != ReservationStatus.CHECKED_IN:
+                raise ValueError("Reservation must be CHECKED_IN to check out.")
+
+            reservation.status = ReservationStatus.COMPLETED
+            reservation.checkout_time = datetime.now()
+
+            room = session.get(RoomModel, reservation.room_id)
+            room.status = RoomStatus.AVAILABLE
+
             session.commit()
-            return True
+            session.refresh(reservation)
+            return reservation
+
+        finally:
+            session.close()
+
+    def cancel(self, reservation_id):
+        session = SessionLocal()
+        try:
+            reservation = session.get(ReservationModel, reservation_id)
+
+            if not reservation:
+                raise ValueError("Reservation not found.")
+
+            if reservation.status != ReservationStatus.ACTIVE:
+                raise ValueError("Only ACTIVE reservations can be cancelled.")
+
+            reservation.status = ReservationStatus.CANCELLED
+            reservation.cancellation_time = datetime.now()
+
+            room = session.get(RoomModel, reservation.room_id)
+            room.status = RoomStatus.AVAILABLE
+
+            session.commit()
+            session.refresh(reservation)
+            return reservation
+
         finally:
             session.close()

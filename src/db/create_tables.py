@@ -1,7 +1,7 @@
-from .engine import engine
-from .base import Base
+from src.db.engine import engine
+from src.db.base import Base
 
-from .models import GuestModel, StaffModel, CleanerModel, RoomModel, ReservationModel
+from src.models import GuestModel, RoomModel, ReservationModel
 
 def create_tables():
     Base.metadata.create_all(bind=engine)

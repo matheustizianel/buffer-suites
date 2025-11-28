@@ -13,5 +13,17 @@ class GuestModel(Base):
 
     reservations = relationship("ReservationModel", back_populates = "guest")
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "email": self.email,
+            "phone_number": self.phone_number,
+            "address": self.address,
+        }
+
+    def __str__(self):
+        return f"{self.name} (ID {self.id})"
+
     def __repr__(self):
-        return f"<Guest(id={self.id}, name={self.name})>"
+        return f"<Guest {self.id}: {self.name}>"

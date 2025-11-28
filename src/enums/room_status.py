@@ -4,4 +4,3 @@ class RoomStatus(Enum):
     AVAILABLE = "available"
     BOOKED = "booked"
     OCCUPIED = "occupied"
-    CLEANING = "cleaning"
