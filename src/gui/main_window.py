@@ -28,6 +28,7 @@ class MainWIndow:
             case "home":
                 from ..views.home_view import HomeView
                 self.active_view = HomeView(self.view_container)
+                self.active_view.update_dashboard()
             
             case "guests":
                 from ..views.guests_view import GuestsView
