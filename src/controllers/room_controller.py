@@ -25,7 +25,8 @@ class RoomController:
         finally:
             session.close()
 
-    def list_rooms(self):
+    @staticmethod
+    def list_rooms():
         session = SessionLocal()
         try:
             return session.query(RoomModel).all()

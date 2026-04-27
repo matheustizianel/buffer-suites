@@ -1,9 +1,7 @@
-version: "3.9"
-
 services:
   postgres:
     image: postgres:16
-    container_name: buffer_suites_pg
+    # container_name: buffer_suites_pg
     restart: always
     environment:
       POSTGRES_USER: buffer_user
